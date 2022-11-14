@@ -7,6 +7,7 @@ public class DragNShoot : MonoBehaviour
 {
    public float power = 10f;
    //public Rigidbody2D rb;
+   private Ball ball;
    public Vector2 minPower;
    public Vector2 maxPower;
    private LineTrajectory lt;
@@ -20,6 +21,7 @@ public class DragNShoot : MonoBehaviour
    {
        cam = Camera.main;
        lt = GetComponent<LineTrajectory>();
+       ball = GetComponent<Ball>();
    }
 
    private void Update()
@@ -46,6 +48,7 @@ public class DragNShoot : MonoBehaviour
                Mathf.Clamp(startPoint.y - endPoint.y, minPower.y, maxPower.y));
 
            //Cambiar por metodo sin RB
+           ball.AddImpulse(force,power);
          //  rb.AddForce(force * power, ForceMode2D.Impulse);
 
            lt.EndLine();

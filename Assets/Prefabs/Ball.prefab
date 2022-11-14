@@ -129,6 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e78ddfc8b0772447aebc29d7a047e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 1
-  drag: 0.1
+  radius: 0.5
+  drag: 0.01
   initVel: {x: 0, y: 0}
+  topLeft: {fileID: 0}
+  lowRight: {fileID: 0}

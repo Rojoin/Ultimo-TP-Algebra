@@ -9,6 +9,7 @@ public class Ball : MonoBehaviour
     [Tooltip("0 means no drag. 1 means instant stop")]
     [SerializeField] private float drag;
     [SerializeField] private Vector2 initVel;
+    [SerializeField] private float mass;
 
     [Header("Map")]
     [SerializeField] private Transform topLeft;
@@ -16,6 +17,7 @@ public class Ball : MonoBehaviour
 
     private Vector3 accel;
     private Vector3 vel;
+    public bool colliding = false;
 
     // Start is called before the first frame update
     void Start()
@@ -85,5 +87,35 @@ public class Ball : MonoBehaviour
             vel.y *= -1;
             transform.position = new Vector3(transform.position.x, lowRight.position.y + radius, 0);
         }
+    }
+
+    public Vector2 GetCenter()
+    {
+        return new Vector2(transform.position.x, transform.position.y);
+    }
+
+    public float GetRadius()
+    {
+        return radius;
+    }
+
+    public Vector2 GetVelocity()
+    {
+        return new Vector2(vel.x, vel.y);
+    }
+
+    public void SetVelocity(Vector2 newVel)
+    {
+        vel = new Vector3(newVel.x, newVel.y, 0);
+    }
+
+    public void SetPosition(Vector2 newPos)
+    {
+        transform.position = newPos;
+    }
+
+    public float GetMass()
+    {
+        return mass;
     }
 }

@@ -41,18 +41,10 @@ public class BallCollision : MonoBehaviour
 
         if (distance <= ball1Radius + ball2Radius)
         {
-            if (!ball1.colliding && !ball2.colliding)
-            {
-                ball1.colliding = true;
-                ball2.colliding = true;
+            ball2.SetPosition(ball1.GetCenter() + (ball1Radius + ball2Radius) *
+                ((ball2.GetCenter() - ball1.GetCenter()).normalized));
 
-                return true;
-            }
-        }
-        else
-        {
-            ball1.colliding = false;
-            ball2.colliding = false;
+            return true;
         }
 
         return false;

@@ -7,10 +7,14 @@ public class BallCollision : MonoBehaviour
 {
     [SerializeField] private Ball[] balls;
 
+    [SerializeField] private float drag;
     // Start is called before the first frame update
     void Start()
     {
-
+        for (int i = 0; i < balls.Length; i++)
+        {
+            balls[i].GetComponent<Ball>().setDrag(drag);
+        }
     }
 
     // Update is called once per frame

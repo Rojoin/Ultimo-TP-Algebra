@@ -597,6 +597,10 @@ PrefabInstance:
       value: Balls
       objectReference: {fileID: 0}
     - target: {fileID: 8252710714368834175, guid: 2a8ba58800504044cb9fa41cdc691fde, type: 3}
+      propertyPath: drag
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252710714368834175, guid: 2a8ba58800504044cb9fa41cdc691fde, type: 3}
       propertyPath: topLeft
       value: 
       objectReference: {fileID: 10491953}

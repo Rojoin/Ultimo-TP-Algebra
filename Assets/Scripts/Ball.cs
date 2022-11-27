@@ -47,8 +47,8 @@ public class Ball : MonoBehaviour
 
     void Drag()
     {
-        vel.x -= vel.x * drag;
-        vel.y -= vel.y * drag;
+        vel.x -= vel.x * drag * Time.deltaTime;
+        vel.y -= vel.y * drag * Time.deltaTime;
     }
 
     void UpdateSize()
@@ -117,5 +117,10 @@ public class Ball : MonoBehaviour
     public float GetMass()
     {
         return mass;
+    }
+
+    public void setDrag(float drag)
+    {
+        this.drag = drag;
     }
 }

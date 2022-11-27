@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 0.5
-  drag: 0.001
+  drag: 1.2
   initVel: {x: 0, y: 0}
   mass: 0
   topLeft: {fileID: 0}

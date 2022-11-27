@@ -11,6 +11,7 @@ public class BallCollision : MonoBehaviour
     [SerializeField] private float radius;
     [SerializeField] private float whiteRadius;
     // Start is called before the first frame update
+
     void Start()
     {
         for (int i = 0; i < balls.Length; i++)
@@ -84,17 +85,18 @@ public class BallCollision : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(Vector3.back, Vector3.forward);
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawLine(Vector3.back, Vector3.forward);
         for (int i = 0; i < balls.Length; i++)
         {
             balls[i].GetComponent<Ball>().SetDrag(drag);
+
+            balls[i].GetComponent<Ball>().SetRadius(radius);
+
             if (i == 0)
             {
                 balls[i].GetComponent<Ball>().SetRadius(whiteRadius);
-
             }
-            balls[i].GetComponent<Ball>().SetRadius(radius);
         }
     }
 }

@@ -29,7 +29,6 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateSize();
         MapCollide();
         Move();
         Drag();
@@ -127,5 +126,10 @@ public class Ball : MonoBehaviour
     public void SetRadius(float newRadius)
     {
         radius = newRadius;
+    }
+
+    void OnDrawGizmos()
+    {
+        UpdateSize();
     }
 }

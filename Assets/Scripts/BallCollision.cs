@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,6 +7,7 @@ using UnityEngine;
 public class BallCollision : MonoBehaviour
 {
     [SerializeField] private Ball[] balls;
+    [SerializeField] private Ball[] holes;
 
     [SerializeField] private float drag;
     [SerializeField] private float radius;
@@ -29,15 +31,37 @@ public class BallCollision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < balls.Length - 1; i++)
+        for (int i = 0; i < balls.Length; i++)
         {
+            if (!balls[i].gameObject.activeInHierarchy)
+                continue;
+
             for (int j = i; j < balls.Length; j++)
             {
+                if (!balls[j].gameObject.activeInHierarchy)
+                    continue;
+
                 if (j == i)
                     continue;
 
                 if (BallsColliding(balls[i], balls[j]))
                     CollideBalls(balls[i], balls[j]);
+
+            }
+
+            for (int j = 0; j < holes.Length; j++)
+            {
+                if (PointBallCollision(holes[j], balls[i].GetCenter()))
+                {
+                    balls[i].gameObject.SetActive(false);
+
+                    if (i == 0)
+                    {
+                        balls[i].SetPosition(new Vector2(-6, 0.03f));
+                        balls[i].gameObject.SetActive(true);
+                        balls[i].SetVelocity(Vector2.zero);
+                    }
+                }
             }
         }
     }
@@ -87,6 +111,7 @@ public class BallCollision : MonoBehaviour
     {
         //Gizmos.color = Color.red;
         //Gizmos.DrawLine(Vector3.back, Vector3.forward);
+
         for (int i = 0; i < balls.Length; i++)
         {
             balls[i].GetComponent<Ball>().SetDrag(drag);
@@ -98,5 +123,12 @@ public class BallCollision : MonoBehaviour
                 balls[i].GetComponent<Ball>().SetRadius(whiteRadius);
             }
         }
+    }
+
+    bool PointBallCollision(Ball ball, Vector3 point)
+    {
+        float dis = Mathf.Abs((ball.transform.position - point).magnitude);
+
+        return (dis <= ball.GetRadius());
     }
 }

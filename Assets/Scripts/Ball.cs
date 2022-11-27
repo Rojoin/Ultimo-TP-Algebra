@@ -119,8 +119,13 @@ public class Ball : MonoBehaviour
         return mass;
     }
 
-    public void setDrag(float drag)
+    public void SetDrag(float drag)
     {
         this.drag = drag;
+    }
+
+    public void SetRadius(float newRadius)
+    {
+        radius = newRadius;
     }
 }

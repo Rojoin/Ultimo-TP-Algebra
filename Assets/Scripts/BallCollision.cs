@@ -10,6 +10,7 @@ public class BallCollision : MonoBehaviour
     [SerializeField] private Ball[] holes;
 
     [SerializeField] private float drag;
+   // [SerializeField] private float airDrag;
     [SerializeField] private float radius;
     [SerializeField] private float whiteRadius;
     // Start is called before the first frame update
@@ -131,4 +132,6 @@ public class BallCollision : MonoBehaviour
 
         return (dis <= ball.GetRadius());
     }
+
+  
 }

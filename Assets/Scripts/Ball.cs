@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
     [Header("Ball")]
     [SerializeField] private float radius;
-    [Tooltip("0 means no drag. 1 means instant stop")]
     [SerializeField] private float drag;
     [SerializeField] private Vector2 initVel;
     [SerializeField] private float mass;
+    [SerializeField] private readonly float tableFriction = 0.2f;
 
     [Header("Map")]
     [SerializeField] private Transform topLeft;
     [SerializeField] private Transform lowRight;
-
+    
     private Vector3 accel;
     private Vector3 vel;
     public bool colliding = false;
@@ -24,6 +25,7 @@ public class Ball : MonoBehaviour
     {
         accel = Vector3.zero;
         vel = new Vector3(initVel.x, initVel.y, 0);
+        drag = tableFriction * (mass * 9.8f); ;
     }
 
     // Update is called once per frame
@@ -46,8 +48,9 @@ public class Ball : MonoBehaviour
 
     void Drag()
     {
-        vel.x -= vel.x * drag * Time.deltaTime;
-        vel.y -= vel.y * drag * Time.deltaTime;
+        vel.x -= vel.x * Time.deltaTime* drag;
+        vel.y -= vel.y * Time.deltaTime* drag;
+     
     }
 
     void UpdateSize()
